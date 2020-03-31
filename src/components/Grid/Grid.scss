@@ -1,0 +1,100 @@
+$grid: #90caf9;
+$player1: #f48fb1;
+$player2: #9575cd;
+$radius: 50px;
+
+#bird {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.Grid {
+  display: flex;
+  border-radius: $radius;
+  border-top: 3px solid darken($grid,15%);
+  border-right: 6px solid darken($grid,10%);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  section {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    article{
+      flex:1;
+      background: $grid;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0px;
+      cursor: pointer;
+      cursor: pointer;
+      mask: url('../../assets/images/mask.svg');
+      mask-type: alpha;
+      &:after {
+        content:"";
+        display: block;
+        width: 65%;
+        height: 65%;
+        background: darken($grid,10%);
+        border-radius: 150px;
+        z-index: 1;
+        position: relative;
+        left: 4%;
+        top: -2%;
+      }
+    }
+  }
+}
+.stack {position: relative}
+.tokens {
+  display: flex;
+  position: absolute;
+  border-radius: $radius;
+  overflow: hidden;
+  top: 0;
+  left:0;
+  z-index: 0;
+  section {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    article{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex:1;
+      &.p1{background: $player1}
+      &.p2{background: $player2}
+    }
+  }
+}
+
+.token {
+  background: #eee;
+  font-size: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+  border-right: 6px solid #ccc;
+  left: 8px;
+  &.p1 {
+    background: $player1;
+    border-right: 6px solid darken($player1,10%);
+  }
+  &.p2 {
+    background: $player2;
+    border-right: 6px solid darken($player2,10%);
+  }
+}
+
+.huhuh {
+  transition: .5s ease;
+  transform: translateY(-150px);
+  &.show {transform: translateY(-50px)}
+}
