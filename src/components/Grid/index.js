@@ -8,8 +8,8 @@ const Token = ({turn,drop}) => <div
 </div>
 
 const Grid = ()=>{
-  const [ line,setLine ] = useState(7)
-  const [ row,setRow ] = useState(8)
+  const row = 7
+  const line = 6
   const [ game,setGame ] = useState(null)
   const [ turn,setTurn ] = useState(true)
   const [ huhuh,setHuhuh ] = useState(false)
@@ -27,10 +27,15 @@ const Grid = ()=>{
   const ease = 'cubic-bezier(0.49, 0.07, 0.97, 0.63)'
   const masterTime = 50
 
+  const checkWin = (game,column) => {
+    console.log(column)
+  }
+
 
 
   const handleCellClick =e=>{
     const selectedCol = Number(e.target.getAttribute('a'))
+    checkWin(game,selectedCol)
     if (game[selectedCol].count >= line) {
       handleFullRowClick()
       return
@@ -86,7 +91,7 @@ const Grid = ()=>{
       lineBuilder.push(a)
     }
   }
-
+/*
   const handleRowChange=e=>{
     setRow(Number(e.target.value))
     const current = [...game]
@@ -95,8 +100,10 @@ const Grid = ()=>{
   const handleLineChange=e=>{
     setLine(Number(e.target.value))
     const current = [...game]
-
   }
+  */
+
+
   const setup =()=>{
     let game = []
     for (let a = 0; a < row; a++) {
@@ -107,6 +114,7 @@ const Grid = ()=>{
       game.push({count:0,player:players})
     }
     setGame(game)
+    return
   }
 
   useEffect(()=>setup(),[])
@@ -115,8 +123,8 @@ const Grid = ()=>{
 
   return (
     <div>
-      <input type="number" value={row} min="1" max={8} onChange={handleRowChange}/>
-      <input type="number" value={line} min="1" max={7} onChange={handleLineChange}/>
+      {/*<input type="number" value={row} min="1" max={8} onChange={handleRowChange}/>
+    <input type="number" value={line} min="1" max={7} onChange={handleLineChange}/>*/}
       <article className={huhuh ? 'show huhuh' : 'huhuh'}>huhuh</article>
       <Token
         drop={{
